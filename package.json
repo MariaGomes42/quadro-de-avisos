@@ -1,0 +1,31 @@
+{
+  "name": "quadro-de-avisos",
+  "version": "1.0.0",
+  "description": "Projeto de Web-II",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MariaGomes42/quadro-de-avisos.git"
+  },
+  "keywords": [
+    "avisos"
+  ],
+  "author": "Maria Ântonia Motoso Gomes",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MariaGomes42/quadro-de-avisos/issues"
+  },
+  "homepage": "https://github.com/MariaGomes42/quadro-de-avisos#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "ejs": "^3.1.5",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}
