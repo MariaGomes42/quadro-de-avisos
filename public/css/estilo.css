@@ -2,3 +2,9 @@
 {
   background-color: #512DA8;
 }
+
+.gradient-purple
+{
+  background: rgb(81,45,168);
+  background: linear-gradient(90deg, rgba(81,45,168,1) 41%, rgba(124,77,255,1) 81%); 
+}
