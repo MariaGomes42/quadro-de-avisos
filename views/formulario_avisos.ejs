@@ -1,16 +1,72 @@
 <!-- Incluir o head -->
-<%- include('./partials/head') %>
+  <%- include('./partials/head') %>
 
-<body>
+  <body>
+    <div class="container">
 
-  <h1 class="alert alert-primary">
-    <span class="material-icons"> campaign </span>
-    Formulario de cadastro de avisos
-  </h1>
+      <br><br>
+      <a href="http://"><i class="fas fa-arrow-left"></i> Voltar </a> <br><br>
 
-  <!-- Incluir os scripts do bootstrap -->
-  <%- include('./partials/scripts_import') %> 
+       <% if (typeof msg !== 'undefined') { %>
+
+          <% if (msg.tipo === 'sucesso') { %>
+            <div class="alert alert-success alert-dismissible fade show p-3" role="alert">
+              <strong> <i class="fas fa-check"></i> Sucesso!</strong> <%= msg.corpo %> 
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+          <% } %> <!-- Fim do if sucesso -->
+
+          <% if (msg.tipo === 'erro')  { %>
+
+            <div class="alert alert-danger alert-dismissible fade show p-3" role="alert">
+              <strong> <i class="fas fa-times"></i> Erro!</strong> <%= msg.corpo %> 
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+
+          <% } %> <!-- Fim do if erro -->
+        <% } %> <!-- Fim do if -->
+
+      <div class="card shadow">
+
+        <div class="card-header bg-purple text-white pl-5 p-4">
+          <h2> <i class="fas fa-bullhorn"></i> Novo Aviso </h2>
+        </div> <!-- Card-header -->
+
+        <div class="card-body p-5">
+          <form action="/avisos/novo" method="POST">
   
-</body>
+            <div class="form-group"> <!-- Titlo -->
+              <label for="titulo">Titulo</label> 
+              <input id="titulo" name="titulo" type="text" class="form-control" required placeholder="Digite o titulo do aviso">
+            </div>
+      
+            <div class="form-group"> <!-- Data -->
+              <label for="data">Data</label> 
+              <input id="data" name="data" type="date" class="form-control" >
+            </div>
+      
+            <div class="form-group"> <!-- Mensagem -->
+                <label for="mensagem">Mensagem</label> 
+                <textarea id="mensagem" name="mensagem" cols="40" rows="5" class="form-control" required placeholder="Digite o aviso">
+                </textarea>
+            </div>
+      
+            <div class="form-group text-right"> <!-- Botão -->
+              <button name="submit" type="submit" class="btn btn-secondary">Limpar</button>
+              <button name="submit" type="submit" class="btn btn-primary">Cadastrar</button>
+            </div>
+          </form>
+        </div> <!-- Card body -->
+      </div> <!-- Card -->
+    </div> <!-- Container -->
+        
+    
+    <!-- Incluir os scripts do bootstrap -->
+    <%- include('./partials/scripts_import') %> 
 
+  </body>
 </html>
