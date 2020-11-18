@@ -17,7 +17,7 @@
       </div> <!-- Card-header -->
 
       <div class="card-body p-5">
-        <table class="table">
+        <table class="table text-center">
           <thead>
             <tr>
               <th scope="col">ID</th>
@@ -26,7 +26,7 @@
               <th scope="col">Ações</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody class="text-center">
 
             <% if (avisos.length < 1) { %>
              <tr>
@@ -40,7 +40,10 @@
                 <td> <%= aviso.titulo %> </td>
                 <td> <%= moment(aviso.data).format("DD/MM/YYYY") %> </td>
                 <td>
-                  <button class="btn btn-secondary">Excluir</button>
+                  <button class="btn btn-secondary"
+                    data-toggle="modal"
+                    data-target="#excluirModal"
+                    onclick="excluir(event,'<%= aviso.ID_avisos %>')">Excluir</button>
                   <button class="btn btn-primary">Alterar</button>
                 </td>
               </tr>
@@ -51,10 +54,62 @@
       </div> <!-- Card body -->
     </div> <!-- Card -->
   </div> <!-- Container -->
-      
+
+  <!-- Modal -->
+  <div class="modal fade" id="excluirModal" tabindex="-1" aria-labelledby="excluirModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Deseja realmente excluir esse aviso?</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Titulo</th>
+                <th scope="col">Data</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr id="modal-tr-body">
+                <td>ID</td>
+                <td>Título</td>
+                <td>Data</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Não</button>
+          <form id="form-excluir" action="" method="GET">
+            <button type="submit" class="btn btn-primary">Sim</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
   
   <!-- Incluir os scripts do bootstrap -->
   <%- include('./partials/scripts_import') %> 
+
+  <!-- Meu srcript -->
+  <script>
+    function excluir(event, id){
+      var tdBotoes = event.target.parentElement
+      var trAviso = tdBotoes.parentElement
+      var trModal = document.getElementById("modal-tr-body")
+
+      var formExcluir = document.getElementById("form-excluir")
+      formExcluir.action = "avisos/excluir/"+id
+
+      trModal.innerHTML = trAviso.innerHTML
+      trModal.removeChild(trModal.lastElementChild)
+    }
+  </script>
 
 </body>
 </html>
