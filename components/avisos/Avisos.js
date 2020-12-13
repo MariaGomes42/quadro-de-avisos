@@ -45,7 +45,7 @@
  * ou uma mensagem de erro
  */
 function selecionarTodos(){
-  return db.select('*').from('avisos')
+  return db.select('*').from('avisos').orderBy('data','desc')
   .then(avisos => { return avisos })
   .catch(erro =>{ return { tipo: "erro", corpo: "Erro: "+ erro} })
 }// fim do selecionarTodos
